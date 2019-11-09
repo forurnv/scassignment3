@@ -1,0 +1,17 @@
+
+
+<!-- EJS syntax (gt + lt instead of {} )
+to begin the error handling process you begin by declaring that if the typeof does not have the value of undefined it will therefore have an error -->
+<% if (typeof errors != "undefined") { %>
+<!-- loop through the errors array of line 26 of users.js defined by the parameters/if statements of the same block. -->
+  <% errors.forEach (function(error) { %>
+<!-- put the error messages we created to be rendered here. when sending, an = is required in the syntax. -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <%= error.msg %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+ <% }); %>
+<% } %>
+
