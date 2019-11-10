@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // DB Config
-const db = require("./config/keys").MongoURI;
+const db = require('./config/keys').MongoURI;
 
 // MONGO Connection 
 // (usenewurlparser:true to avoid the error causing default. 
@@ -16,11 +16,11 @@ const db = require("./config/keys").MongoURI;
 // and will be removed in a future version. To use the new Server Discover and Monitoring engine, 
 // pass option { useUnifiedTopology: true } to the MongoClient constructor.
 // // see "https://mongoosejs.com/docs/deprecations.html")
-mongoose.connect(db, { useUnifiedTopology: true })
+mongoose.connect(db, { useNewUrlParser: true })
 // or option 2 from the website although it worked from the 
 // first line, [mongoose.createConnection(db, { useNewUrlParser: true })]
   .then(() => console.log("MongoDatabase Connected..."))
-  .catch (err => console.log(err));
+  .catch(err => console.log(err));
 
 // EJS (layouts must be above the set method below it)
 app.use(expresslayouts);

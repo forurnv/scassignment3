@@ -81,13 +81,32 @@ router.post("/register", (req, res) => {
           });
 
 
-          console.log(newUser);
-          res.send("hello");
-        
-
+          // hash password using method "salt" of bcrypt.
+          bcrypt.genSalt(10, (err, salt) => 
+          // which has method "hash" take plain txt password from
+          // new user above and salt to return a "hashed" password
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if(err) throw err;
+          // set password of new user to hashed password
+            newUser.password = hash;
+          // might as well save new user as well seeing as how weve made 
+          // the memory space for it and returned an id: from mongodb
+          //  but havent made more than the instance. 
+          // dont forget the promise returned with this method.
+            newUser.save()
+              .then(user => {
+            // once saved your redirected
+                res.redirect("/login");
+              })
+              .catch(err => console.log(err));
+          }));
+          // seconc test
+          // console.log(newUser);
+          // res.send("hello");
         }
       });
     }
+  // first test
   // console.log(req.body);
   // res.send("hello");
 });
