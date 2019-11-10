@@ -3,7 +3,12 @@
 const express = require("express");
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
+const session = require("express-session");
 
+//////////////////////////////////////////////////
+              //  CONNECTION
+///////////////////////////////////////////////////
 // basic express server
 const app = express();
 
@@ -22,6 +27,10 @@ mongoose.connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDatabase Connected..."))
   .catch(err => console.log(err));
 
+//////////////////////////////////////////////////
+                  //  MIDDLEWARE
+//////////////////////////////////////////////////
+
 // EJS (layouts must be above the set method below it)
 app.use(expresslayouts);
 app.set(`view engine`, `ejs`);
@@ -32,6 +41,23 @@ app.set(`view engine`, `ejs`);
 // "https://stackoverflow.com/questions/24330014/bodyparser-is-deprecated-express-4"
 // now we can get info from our form with request.body
 app.use(express.urlencoded({ extended: false }));
+
+// Express session courtesy of "https://github.com/expressjs/session/blob/master/README.md"
+// Also, for more on where secrets have to match for this npm 
+// package to work see "https://www.npmjs.com/package/express-session"
+app.use(session({
+  secret: "secret",
+  resave: true,
+  // For avoiding more deprecation warnings:
+  saveUninitialized: true,
+}));
+
+// Connect flash 
+app.use(flash());
+
+// Global variables for 
+app.use((req, res, next) => )
+
 
 // Routes
 app.use("/", require(`./routes/index`));

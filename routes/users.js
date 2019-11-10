@@ -95,12 +95,12 @@ router.post("/register", (req, res) => {
           // dont forget the promise returned with this method.
             newUser.save()
               .then(user => {
-            // once saved your redirected
-                res.redirect("/login");
+            // once saved your're redirected
+                res.redirect("/users/login");
               })
               .catch(err => console.log(err));
           }));
-          // seconc test
+          // second test
           // console.log(newUser);
           // res.send("hello");
         }
