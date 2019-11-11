@@ -1,16 +1,20 @@
 
-// bring in expresss/layouts/mongoose
+// bring in expresss,layouts,mongoose,flash,session,passport
 const express = require("express");
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const session = require("express-session");
+const passport = require("passport");
 
 //////////////////////////////////////////////////
               //  CONNECTION
 ///////////////////////////////////////////////////
 // basic express server
 const app = express();
+
+// bring in congig/passport
+require ("./config/passport")(passport);
 
 // DB Config
 const db = require('./config/keys').MongoURI;
@@ -21,7 +25,7 @@ const db = require('./config/keys').MongoURI;
 // and will be removed in a future version. To use the new Server Discover and Monitoring engine, 
 // pass option { useUnifiedTopology: true } to the MongoClient constructor.
 // // see "https://mongoosejs.com/docs/deprecations.html")
-mongoose.connect(db, { useNewUrlParser: true })
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
 // or option 2 from the website although it worked from the 
 // first line, [mongoose.createConnection(db, { useNewUrlParser: true })]
   .then(() => console.log("MongoDatabase Connected..."))
@@ -43,6 +47,7 @@ app.set(`view engine`, `ejs`);
 app.use(express.urlencoded({ extended: false }));
 
 // Express session courtesy of "https://github.com/expressjs/session/blob/master/README.md"
+// "sessions" suggested by Linden our tutor after going over the assignment
 // Also, for more on where secrets have to match for this npm 
 // package to work see "https://www.npmjs.com/package/express-session"
 app.use(session({
@@ -52,16 +57,28 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-// Connect flash 
+// passport middleware from "passportjs.org" to start and track a session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash (envoke)
 app.use(flash());
 
-// Global variables for 
-app.use((req, res, next) => )
+// Set global variables for creating sessions with the use of flash 
+app.use((req, res, next) => {
+  // give the res.locals the value required by flash 
+  // so we can call on them for verification
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  // dont forget next() in middleware for the execution stacks
+  next();
+});
 
 
 // Routes
-app.use("/", require(`./routes/index`));
-app.use("/users", require(`./routes/users`));
+app.use("/", require("./routes/index"));
+app.use("/users", require("./routes/users"));
 
 // create a port to run our app on
 const PORT = process.env.PORT || 3000;

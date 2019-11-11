@@ -11,7 +11,8 @@ const bcrypt = require("bcryptjs");
 //  be able to call methods on user.
 const User = require("../models/User");
 
-
+// bring in passport
+const passport = require("passport");
 
 //  login Page
 // GET and SEND/RENDER a msg for testing
@@ -95,8 +96,10 @@ router.post("/register", (req, res) => {
           // dont forget the promise returned with this method.
             newUser.save()
               .then(user => {
-            // once saved your're redirected
-                res.redirect("/users/login");
+              // use flash to stage session responses.
+              req.flash("success_msg", "You Are Now Registered, Please Log-in");
+              // once saved your're redirected
+              res.redirect("/users/login");
               })
               .catch(err => console.log(err));
           }));
@@ -110,9 +113,21 @@ router.post("/register", (req, res) => {
   // console.log(req.body);
   // res.send("hello");
 });
+// Post handler because were handling a post Request.
+router.post("/login", (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: "/dashboard" ,
+    failureRedirect: "/users/login",
+    failureFlash: true
+  })(req, res, next);
+});
+// Logout handler
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "You Are Now Logged Out");
+  res.redirect("/users/login");
+});
 
 // send this out
 module.exports = router;
-
-
 
