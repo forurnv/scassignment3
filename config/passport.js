@@ -45,6 +45,7 @@ module.exports = function(passport) {
 // way to serialize and unserialize or encrypt or decrypt. Most freqently 
 // the methods are found in the documents of our Source. in 
 // this case "http://www.passportjs.org/docs/"
+
 // Passport will serialize and deserialize user instances
 // to and from the session.
   passport.serializeUser((user, done) => {
