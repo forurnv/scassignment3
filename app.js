@@ -16,8 +16,11 @@ const app = express();
 // bring in congig/passport
 require ("./config/passport")(passport);
 
+// Invoke dotenv
+require("dotenv").config();
+
 // DB Config
-const db = require('./config/keys').MongoURI;
+const db = process.env.DB_CONNECTION;
 
 // MONGO Connection 
 // (usenewurlparser:true to avoid the error causing default. 
@@ -85,5 +88,3 @@ const PORT = process.env.PORT || 3000;
 
 // use app object called Listen 
 app.listen(PORT, console.log(`server started on port ${PORT}`));
-
-

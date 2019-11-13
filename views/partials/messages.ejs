@@ -1,5 +1,4 @@
 
-
 <!-- EJS syntax (gt + lt instead of {} )
 to begin the error handling process you begin by declaring that if the typeof does not have the value of undefined it will therefore have an error -->
 <% if (typeof errors != "undefined") { %>
@@ -14,8 +13,6 @@ to begin the error handling process you begin by declaring that if the typeof do
     </div>
  <% }); %>
 <% } %>
-
-
 <% if (success_msg != "") { %>
 <!-- put the success messages we created to be rendered here. 
   when sending, an = is required in the syntax. -->
@@ -26,29 +23,23 @@ to begin the error handling process you begin by declaring that if the typeof do
  </button>
 </div>
 <% } %>
-
 <% if (error_msg != "") { %>
-  <!-- put the error messages we created to be rendered here. 
-    when sending, an = is required in the syntax. -->
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <%= error_msg %>
-   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-   </button>
-  </div>
-  <% } %>
-
-
-  <% if (error != "") { %>
-    <!-- put the error messages for login validation we created to be 
-    rendered here. when sending, an = is required in the syntax. -->
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <%= error %>
-     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-       <span aria-hidden="true">&times;</span>
-     </button>
-    </div>
-    <% } %>
-
-
-
+<!-- put the error messages we created to be rendered here. 
+  when sending, an = is required in the syntax. -->
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <%= error_msg %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
+<% if (error != "") { %>
+<!-- put the error messages for login validation we created to be 
+rendered here. when sending, an = is required in the syntax. -->
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <%= error %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
