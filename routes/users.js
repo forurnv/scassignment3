@@ -1,5 +1,4 @@
 
-
 // same as previous pages / no lesson here
 const express = require("express");
 const router = express.Router();
@@ -29,12 +28,12 @@ router.get("/register", (req, res) => res.render("register"));
 // register handle/path
 router.post("/register", (req, res) => {
 
-  const { name, email, password, password2 } = req.body;
-          // const name = req.body.name
-          // const email = req.body.email
-          // const password = req.body.password
-          // const password2 = req.body.password2
-          // const adult = Boolean(req.body.adult)
+  // const { name, email, password, password2 } = req.body;
+          const name = req.body.name
+          const email = req.body.email
+          const password = req.body.password
+          const password2 = req.body.password2
+          const adult = Boolean(req.body.adult)
   // forcing Authentications (I chose these lines because 
   // they were beautiful and I understood them curtesy of Brad Traversy)
   // define errors as an array with the following potentials
