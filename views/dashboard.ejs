@@ -1,6 +1,17 @@
 
 <!-- h1 with margin top of 4 -->
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome and Thank You <%= name %> , We're Excited To Hear Your Thoughts On Our Newsletters.</p>
+<h2 class="mt-4">Welcome <%= name %></h2>
+<br>
+<h5>...and Thank You,<br>As of your registration on<br><%= nowdate %>,<br>
+We'll Be Hoping To Hear Your Thoughts On Our Newsletters.</h5>
 <!-- users are sent to logout "page" -->
+<br>
+<br>
+<!-- Additional moment formats from momentjs.com -->
+<!-- User registered on <%= rawdate %>.
+Regdate formatted: <%= regdate %>. -->
+
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+<script src="java.js/dashboard.js"></script>
+

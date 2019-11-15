@@ -101,6 +101,8 @@ const adult = Boolean(req.body.adult)
           // dont forget the promise returned with this method.
             newUser.save()
               .then(user => {
+                console.log("date: " + user.date)
+                console.log("Moment: "+moment().format("MMMM Do YYYY, h:mm:ss a"))
               // use flash to stage session responses.
               req.flash("success_msg", "You Are Now Registered, Please Log-in");
               // once saved your're redirected

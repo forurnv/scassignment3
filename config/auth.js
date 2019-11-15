@@ -1,3 +1,5 @@
+
+// To protect a page from entrance without login/registration
 module.exports = {
   ensureAuthenticated: function(req, res, next) {
     if(req.isAuthenticated()) {

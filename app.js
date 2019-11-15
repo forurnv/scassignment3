@@ -13,8 +13,12 @@ const passport = require("passport");
 // basic express server
 const app = express();
 
+
 // bring in congig/passport
 require ("./config/passport")(passport);
+
+// Bring in Path
+const path = require('path');
 
 // Invoke dotenv
 require("dotenv").config();
@@ -31,11 +35,11 @@ const db = process.env.DB_CONNECTION;
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
 // or option 2 from the website although it worked from the 
 // first line, [mongoose.createConnection(db, { useNewUrlParser: true })]
-  .then(() => console.log("MongoDatabase Connected..."))
-  .catch(err => console.log(err));
+.then(() => console.log("MongoDatabase Connected..."))
+.catch(err => console.log(err));
 
 //////////////////////////////////////////////////
-                  //  MIDDLEWARE
+//  MIDDLEWARE
 //////////////////////////////////////////////////
 
 // EJS (layouts must be above the set method below it)
@@ -83,8 +87,14 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 
+// Route static assets
+app.use(express.static(path.join(__dirname, "assets")));
+
 // create a port to run our app on
 const PORT = process.env.PORT || 3000;
 
 // use app object called Listen 
 app.listen(PORT, console.log(`server started on port ${PORT}`));
+
+
+
