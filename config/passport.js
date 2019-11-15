@@ -14,7 +14,6 @@ const User = require("../models/User");
 // export the Strategy were creating and pass the passport Object
 // through/from the app.js file
 
-
 module.exports = function(passport) {
   // Passing in the passport to our new strategy.
   passport.use(
@@ -57,8 +56,3 @@ module.exports = function(passport) {
     });
   });
 };
-
-
-
-
-

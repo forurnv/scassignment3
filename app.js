@@ -70,17 +70,17 @@ app.use(flash());
 
 // Set global variables for creating sessions with the use of flash 
 app.use((req, res, next) => {
-  // give the res.locals the value required by flash 
-  // so we can call on them for verification
+// give the res.locals the value required by flash 
+// so we can call on them for verification
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash("error");
-  // dont forget next() in middleware for the execution stacks
+// dont forget next() in middleware for the execution stacks
   next();
 });
 
-  // Courtesy of Linden (Our Tutor)
-  // Middleware for validation protection when travelling pages
+// Courtesy of Linden (Our Tutor)
+// Middleware for validation protection when travelling pages
 const nocache = (req, res, next) => {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
   res.header("Expires", "-1");
@@ -108,4 +108,3 @@ app.use((req, res, next) => {
   res.send("404: File Not Found");
   next()
 });
-

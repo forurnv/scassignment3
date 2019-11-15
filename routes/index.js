@@ -7,7 +7,6 @@ const router = express.Router();
 // Protect our authentication worthy pages
 const { ensureAuthenticated } = require("../config/auth");
 
-
 // Welcome Page
 // GET and SEND/RENDER a msg for testing
 // router.get("/", (req, res) => res.send ("welcome to the homepage"));
@@ -28,6 +27,4 @@ router.get("/thankyou", (req, res) =>
 res.render ("thankyou", {
   name: req.user
 }));
-
 module.exports = router;
-

@@ -1,22 +1,23 @@
 
-// Courtesy of Mallory Zlomanchuk
 // same as previous pages / no lesson here
 const express = require("express");
 const router = express.Router();
 
+// Initiate original db dump (you can even see the "Articles" function light-up 
+// for a fraction of a second when it's first append occurs) then it never lights again.
 const Articles = require("../models/Articles");
 
 // Protect our authentication worthy pages
 const { ensureAuthenticated } = require("../config/auth");
 
 // /////////////////////////////////////////
-//           POST
+//           POST(S)
 // /////////////////////////////////////////
 
 // Database protection ON Post page by wraping get request inside
 router.get("/posts", ensureAuthenticated, (req, res) => {
 
-// Courtesy Tony Grimes
+// Courtesy of Tony Grimes
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
@@ -49,7 +50,6 @@ MongoClient.connect(uri,{ useUnifiedTopology: true,useNewUrlParser: true }, func
   artCol.find({}).toArray().then((blog) => {
     console.log("articles found")
     res.render("posts", {show: blog });
-    console.log(blog)
   });
 
   // Adding user fixture to db. My authentication needed a password so I chose not to use the user fixture however left it for Rubric success
@@ -97,5 +97,4 @@ router.get("/posts/:slug", ensureAuthenticated, (req, res) => {
     client.close();
   });
 });
-  
 module.exports = router;

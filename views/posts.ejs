@@ -1,17 +1,13 @@
 
-
-Courtesy of Mallory Zlomanchuk
-<h1 class="mb-5">Article Blog Titles</h1>
-<ul id = "list" class="articles mt-3">
+<!-- Courtesy of Mallory Zlomanchuk -->
+<h2 class="mt-2 mb-3">Article Blog Titles</h2>
+<ul id = "list" class="articles">
   <% for(let i=0; i<show.length; i++ ) {%>
       <dt>
-        <a href="/posts/<%= show[i].slug %>"><%= show[i].title %></a>
+        <strong><a  href="/posts/<%= show[i].slug %>"><%= show[i].title %></strong></strong>
       </dt>
-      <dd><%= show[i].summary %></dd>
+      <em><dd class="text-success ml-4"><%= show[i].summary %></dd></em>
     <% } %>
 </ul> 
-<br>
-<a href="/thankyou" class="btn btn-secondary ml-5 mt-3">Back</a>
-
-
-
+<a href="/thankyou" class="btn btn-primary ml-5 mt-2">Back</a>
+<script src="java.js/welcome.js"></script>

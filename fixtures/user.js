@@ -1,6 +1,4 @@
 
-
-
 const users = [
   {
     name: 'John Wick',
@@ -23,7 +21,4 @@ const users = [
     adult: false
   }
 ];
-
 module.exports = users;
-
-

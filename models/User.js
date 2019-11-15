@@ -23,8 +23,6 @@ const UserSchema = new mongoose.Schema({
     default: false
   }
 });
-
 // Create the User and format of schema in one for export
 const User = mongoose.model("subscribers", UserSchema);
-
 module.exports = User;

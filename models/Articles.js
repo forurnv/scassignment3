@@ -1,8 +1,7 @@
 
-
-// require your dependencies here
+// Bring in mongoose
 const mongoose = require("mongoose");
-
+// Layout model
 const articleSchema = new mongoose.Schema(
   {
     title: {
@@ -23,11 +22,6 @@ const articleSchema = new mongoose.Schema(
     }
   }
 );
-
 // Create the User and format of schema in one for export
 const Articles = mongoose.model("final", articleSchema);
-
 module.exports = Articles;
-
-
-

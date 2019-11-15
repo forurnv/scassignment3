@@ -1,10 +1,11 @@
 
 <!-- Curtesy of Mallory Zlomanchuck -->
-<ul id = "list" class="articles">
+<ul id = "list" class="articles mt-4">
   <% for(let i=0; i<show.length; i++ ) {%>
-      <h5 class="text-info"><%= show[i].title %></h5>
-      <p class = article><%= show[i].body %></p>
+      <h4 class="text-primary"><%= show[i].title %></h4>
+      <h6 class = "article mt-4 ml-4 text-success"><%= show[i].body %></h6>
     <% } %>
 </ul>
 <br>
-<a href="/posts" class="btn btn-secondary ml-5 mt-3">Return to List</a>
+<a href="/posts" class="btn btn-primary ml-5">Return to List</a>
+<script src="../java.js/slug.js"></script>

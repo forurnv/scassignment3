@@ -1,18 +1,12 @@
 
 <!-- h1 with margin top of 4 -->
-<h2 class="mt-4">Welcome <%= name %></h2>
-<br>
-<h5>...and Thank You,<br>As of your registration on<br><%= nowdate %>,<br>
-We'll Be Hoping To Hear Your Thoughts On Our Newsletters.</h5>
+<h2 class="mt-4">Welcome <%= name %></h2><br>
+<h5 class="text-success">...and Thank You,<br>As of your registration on<br><%= nowdate %>,<br>
+We'll Be Hoping To Hear Your Thoughts On Our Newsletters.</h5><br>
 <!-- users are sent to logout "page" -->
-<br>
-<br>
 <!-- Additional moment formats from momentjs.com -->
 <!-- User registered on <%= rawdate %>.
 Regdate formatted: <%= regdate %>. -->
-<a href="/posts" class="btn btn-secondary ml-5 mt-3">Acticle Blogs</a>
-<br>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-
+<a href="/posts" class="btn btn-primary ml-2">Acticle Blogs</a><br><br>
+<a href="/users/logout" class="btn btn-primary ml-2">Logout</a>
 <script src="java.js/thankyou.js"></script>
-
