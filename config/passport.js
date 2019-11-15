@@ -24,7 +24,7 @@ module.exports = function(passport) {
       User.findOne ({ email: email }) 
         .then(user => {
            if (!user) {
-          return done(null, false, { message: "That Email Is Not Yet Registered!!" });
+          return done(null, false, { message: "That Email Is Not Yet Subscribed!!" });
         }
         // Match password using bcrypts compare method on our db with boolean.
         bcrypt.compare(password, user.password, (err, isMatch) => {

@@ -19,14 +19,14 @@ const passport = require("passport");
 router.get("/login", (req, res) => res.render("login"));
 
 
-//  register Page
+//  subscribe Page
 // GET and SEND/RENDER a msg for testing
-// router.get("/register", (req, res) => res.send("register on this page"));
-router.get("/register", (req, res) => res.render("register"));
+// router.get("/subscribe", (req, res) => res.send("subscribe on this page"));
+router.get("/subscribe", (req, res) => res.render("subscribe"));
 
 
-// register handle/path
-router.post("/register", (req, res) => {
+// subscribe handle/path
+router.post("/subscribe", (req, res) => {
 
   // const { name, email, password, password2 } = req.body;
 const name = req.body.name
@@ -51,7 +51,7 @@ const adult = Boolean(req.body.adult)
       errors.push ({msg: "Password should be at least 6 charachters"});
     }
     if (errors.length > 0) {
-      res.render("register", {
+      res.render("subscribe", {
         errors,
         name,
         email,
@@ -71,7 +71,7 @@ const adult = Boolean(req.body.adult)
         if(user) {
       // since/if the user exists:
           errors.push ({msg: "Email Is Already Registered"});
-          res.render("register", {
+          res.render("subscribe", {
             errors,
             name,
             email,
@@ -101,8 +101,9 @@ const adult = Boolean(req.body.adult)
           // dont forget the promise returned with this method.
             newUser.save()
               .then(user => {
-                console.log("date: " + user.date)
-                console.log("Moment: "+moment().format("MMMM Do YYYY, h:mm:ss a"))
+                // test moments in the console log
+                // console.log("date: " + user.date)
+                // console.log("Moment: "+moment().format("MMMM Do YYYY, h:mm:ss a"))
               // use flash to stage session responses.
               req.flash("success_msg", "You Are Now Registered, Please Log-in");
               // once saved your're redirected
@@ -123,7 +124,7 @@ const adult = Boolean(req.body.adult)
 // Post handler because were handling a post Request.
 router.post("/login", (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: "/dashboard" ,
+    successRedirect: "/thankyou" ,
     failureRedirect: "/users/login",
     failureFlash: true
   })(req, res, next);

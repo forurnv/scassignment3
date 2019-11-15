@@ -1,0 +1,10 @@
+
+<!-- Curtesy of Mallory Zlomanchuck -->
+<ul id = "list" class="articles">
+  <% for(let i=0; i<show.length; i++ ) {%>
+      <h5 class="text-info"><%= show[i].title %></h5>
+      <p class = article><%= show[i].body %></p>
+    <% } %>
+</ul>
+<br>
+<a href="/posts" class="btn btn-secondary ml-5 mt-3">Return to List</a>

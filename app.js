@@ -1,11 +1,12 @@
 
-// bring in expresss,layouts,mongoose,flash,session,passport
+// bring in expresss,layouts,mongoose,flash,session,passport,path
 const express = require("express");
 const expresslayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const path = require('path');
 
 //////////////////////////////////////////////////
               //  CONNECTION
@@ -13,12 +14,8 @@ const passport = require("passport");
 // basic express server
 const app = express();
 
-
 // bring in congig/passport
 require ("./config/passport")(passport);
-
-// Bring in Path
-const path = require('path');
 
 // Invoke dotenv
 require("dotenv").config();
@@ -82,10 +79,20 @@ app.use((req, res, next) => {
   next();
 });
 
+  // Courtesy of Linden (Our Tutor)
+  // Middleware for validation protection when travelling pages
+const nocache = (req, res, next) => {
+  res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+  res.header("Expires", "-1");
+  res.header("Pragma", "no-cache");
+  next();
+}
+app.use(nocache);
 
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
+app.use("/", require("./routes/article"));
 
 // Route static assets
 app.use(express.static(path.join(__dirname, "assets")));
@@ -96,5 +103,9 @@ const PORT = process.env.PORT || 3000;
 // use app object called Listen 
 app.listen(PORT, console.log(`server started on port ${PORT}`));
 
-
+app.use((req, res, next) => {
+  res.status(404);
+  res.send("404: File Not Found");
+  next()
+});
 

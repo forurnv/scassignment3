@@ -13,9 +13,9 @@ const { ensureAuthenticated } = require("../config/auth");
 // router.get("/", (req, res) => res.send ("welcome to the homepage"));
 router.get("/", (req, res) => res.render ("welcome"));
 
-// Dashboard Page
-router.get("/dashboard", ensureAuthenticated, (req, res) => 
-res.render ("dashboard", {
+// thankyou Page
+router.get("/thankyou", ensureAuthenticated, (req, res) => 
+res.render ("thankyou", {
   name: req.user.name,
   rawdate: req.user.date,
   regdate: moment(req.user.date).format("MMMM Do YYYY, h:mm:ss a"),
@@ -23,9 +23,9 @@ res.render ("dashboard", {
   nowdate: moment().format("MMMM Do YYYY, h:mm:ss a")
 }));
 
-//Unauthenticated link to dashboard for styling devs
-router.get("/dashboard", (req, res) => 
-res.render ("dashboard", {
+//Unauthenticated link to thankyou for styling devs
+router.get("/thankyou", (req, res) => 
+res.render ("thankyou", {
   name: req.user
 }));
 

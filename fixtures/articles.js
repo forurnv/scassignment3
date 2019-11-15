@@ -53,5 +53,3 @@ articleList = [
 
 module.exports = articleList;
 
-
-

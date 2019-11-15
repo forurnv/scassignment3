@@ -1,0 +1,17 @@
+
+
+Courtesy of Mallory Zlomanchuk
+<h1 class="mb-5">Article Blog Titles</h1>
+<ul id = "list" class="articles mt-3">
+  <% for(let i=0; i<show.length; i++ ) {%>
+      <dt>
+        <a href="/posts/<%= show[i].slug %>"><%= show[i].title %></a>
+      </dt>
+      <dd><%= show[i].summary %></dd>
+    <% } %>
+</ul> 
+<br>
+<a href="/thankyou" class="btn btn-secondary ml-5 mt-3">Back</a>
+
+
+

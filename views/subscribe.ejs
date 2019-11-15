@@ -5,12 +5,12 @@
     <div class="card card-body">
       <!-- h1 with an icon as register -->
       <h3 class="text-center mb-3">
-        <i class="fas fa-atom"></i> Register
+        <i class="fas fa-atom"></i> Subscribe
       </h3>
       <p>Create An Account To Login And Subscribe To Atomic&nbsp;Newsletters</p>
       <% include ./partials/messages %>
       <!-- the form info is going to users/register as post request  -->
-      <form action="/users/register" method="POST">
+      <form action="/users/subscribe" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
           <!-- the value lines are a boolean forcing to display the true names if anything other than indefined. -->
@@ -66,7 +66,7 @@
           />I'm An Adult 
         </div>
         <button type="submit" class="btn btn-primary btn-block">
-          Register
+          Subscribe
         </button>
       </form>
       <!-- this line leads the user to the login if an account is already registered (or thinks they are)-->
