@@ -4,6 +4,8 @@
 const express = require("express");
 const router = express.Router();
 
+const Articles = require("../models/Articles");
+
 // Protect our authentication worthy pages
 const { ensureAuthenticated } = require("../config/auth");
 
@@ -18,8 +20,8 @@ router.get("/posts", ensureAuthenticated, (req, res) => {
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
-const articles = require('./fixtures/articles');
-const users = require('./fixtures/users');
+const articles = require('../fixtures/articles');
+const users = require('../fixtures/user');
 
 const uri = process.env.DB_CONNECTION;
 MongoClient.connect(uri,{ useUnifiedTopology: true,useNewUrlParser: true }, function(err, client) {
